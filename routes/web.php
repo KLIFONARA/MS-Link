@@ -22,7 +22,7 @@ $router->get('/', function () {
 $router->get('/{slug}', function ($slug = null) {
     $link = Link::where('slug', $slug)->first();
 
-    if ($link === null || $link->is_active === 0) {
+    if ($link === null || $link->active === 0) {
         return view('404');
     }
 
