@@ -3,6 +3,7 @@
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 use App\Models\Link;
+use App\Models\LinkTree;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use App\Models\Link;
 */
 
 $router->get('/', function () {
-    return redirect(env('MAIN_APP_URL'));
+    $linksInTree = LinkTree::with('link')->has('link')->orderBy('sort_key')->get();
+
+    return view('index', ['links' => $linksInTree]);
 });
 
 $router->get('/{slug}', function ($slug = null) {
