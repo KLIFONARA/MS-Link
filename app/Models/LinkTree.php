@@ -8,6 +8,6 @@ class LinkTree extends Model
 {
     public function link()
     {
-        return $this->hasOne(Link::class, 'id', 'link_id')->where('active', 1);
+        return $this->belongsTo(Link::class)->where('active', 1);
     }
 }
